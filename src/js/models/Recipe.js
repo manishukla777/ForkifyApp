@@ -91,6 +91,8 @@ export default class Recipe {
             ing.count *= (newServings / this.servings);
         });
 
+        console.log('updateServings',this.ingredients);
+
         this.servings = newServings;
     };
 }  
