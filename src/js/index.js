@@ -59,14 +59,14 @@ const controlRecipe = async () => {
 
     if (id) {
 
-        recipeView.clearRecipe();
-        renderLoader(elements.recipe);
-
-        if (state.search) searchView.highlightSelected(id);
-
-        state.recipe = new Recipe(id);
-
         try {
+            recipeView.clearRecipe();
+            renderLoader(elements.recipe);
+
+            if (state.search) searchView.highlightSelected(id);
+
+            state.recipe = new Recipe(id);
+
             await state.recipe.getRecipe();
             state.recipe.parseIngredients();
 
@@ -81,7 +81,7 @@ const controlRecipe = async () => {
 
         } catch (err) {
             clearLoader();
-            alert(err);
+            console.log('recipe not found');
         }
 
     }
@@ -162,7 +162,7 @@ elements.recipe.addEventListener('click', e => {
     } else if (e.target.matches('.recipe__btn--add, .recipe__btn--add *')) {
 
         controlList();
-        
+
     } else if (e.target.matches('.recipe__love, .recipe__love *')) {
         controlLike();
     }
